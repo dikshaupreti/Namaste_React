@@ -1,58 +1,102 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-/**
- * < div id= "parent">
- *      <div id= "child1">
- *              <h1>Hii daddy</h1>
- *              <h2> hiiiiii </h2>
- *       </div>
- *      <div id= "child2">
-            <h1>Hii chhiiii</h1>
- *          <h2> hiiiiii </h2>
- *      </div>
- * </div>
- * 
- */
-// let heading1 = React.createElement('h1', {id: "heading"}, [
-//     React.createElement('div', {id: 'child1'}, [
-//         React.createElement('h1', {}, 'Hii daddy'),
-//         React.createElement('h2', {}, 'Hiiiiiiiii'),
-//     ]),
-//     React.createElement('div', {id: 'child2'}, [
-//         React.createElement('h1', {}, 'Hii chhiiii'),
-//         React.createElement('h2', {}, 'Hiiiiiiiii'),
-//     ])
-// ])
-//console.log(heading1)
-// component inside react element
-let heading2 = (<div>
-    <div>
-        <h1>hiiii</h1>
-        <Section />
-        <Section></Section>
-        {   /** as compoent are basically function only */
-            Section()}
+import './index.css'
+
+
+const Header = () => (
+    <div className='header'>
+        <div className='logo'>
+            <img src= "https://images-platform.99static.com//Ba6VdSQsbU4OpiyQEzLi7yHy9KQ=/440x521:1494x1575/fit-in/500x500/99designs-contests-attachments/127/127439/attachment_127439993" alt= "app logo" /> 
+        </div>
+        <div className='nav-item'>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Cart Item</li>
+            </ul>
+        </div>
     </div>
-</div>)
-console.log(heading2)
-// other way of writing component
-const Section = function() {
-    <div>
-        <h1>diksha</h1>
-    </div>
+)
+
+const RestrauCart = ({title, price, thumbnail}) =>{
+    return (       
+        <div className='card'>
+            <div className='food-logo'>
+                <img src={thumbnail}/>
+            </div>
+            <div className='card-content'>
+                <h3>{title}</h3>
+                <h4>Rs{price}</h4>
+                <h4>Biryani, north-indian</h4>
+            </div>
+        </div>)
+
 }
-    
-const num = 1000
-const Footer = () => {
-    return (
-        <div>
-    <div>
-        <h1>hiiii</h1>
-        {heading2} {num + 2000} 
-        <Section />
-    </div>
-    </div>
-    )
+
+        
+const cartData = [
+    {
+        "id": 59,
+        "title": "Spring and summershoes",
+        "price": 20,
+        "quantity": 3,
+        "total": 60,
+        "discountPercentage": 8.71,
+        "discountedPrice": 55,
+        "thumbnail": "https://i.dummyjson.com/data/products/59/thumbnail.jpg"
+      },
+      {
+        "id": 88,
+        "title": "TC Reusable Silicone Magic Washing Gloves",
+        "price": 29,
+        "quantity": 2,
+        "total": 58,
+        "discountPercentage": 3.19,
+        "discountedPrice": 56,
+        "thumbnail": "https://i.dummyjson.com/data/products/88/thumbnail.jpg"
+      },
+      {
+        "id": 18,
+        "title": "Oil Free Moisturizer 100ml",
+        "price": 40,
+        "quantity": 2,
+        "total": 80,
+        "discountPercentage": 13.1,
+        "discountedPrice": 70,
+        "thumbnail": "https://i.dummyjson.com/data/products/18/thumbnail.jpg"
+      },
+      {
+        "id": 95,
+        "title": "Wholesale cargo lashing Belt",
+        "price": 930,
+        "quantity": 1,
+        "total": 930,
+        "discountPercentage": 17.67,
+        "discountedPrice": 766,
+        "thumbnail": "https://i.dummyjson.com/data/products/95/thumbnail.jpg"
+      }
+]
+const Body = () => {
+    return (<div className='container'>
+            <h3>Search for the food</h3>
+            <div className='res'>
+            {
+                cartData.map((item) => 
+                    (
+                        <RestrauCart {...item}/>   
+                    )
+                )
+            }
+                
+            </div>
+            
+    </div>)
+}  
+
+const App = () => {
+    return <>
+        <Header /> <Body/>
+    </>
 }
 let root= ReactDOM.createRoot(document.getElementById('root'))
-root.render(<Footer />)
+root.render(<App />)
