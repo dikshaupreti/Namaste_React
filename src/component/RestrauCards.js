@@ -1,6 +1,8 @@
-const RestrauCart = ({title, price, thumbnail}) =>{
-    return (       
-        <div className='card'>
+import { Link } from "react-router-dom"
+const RestrauCart = ({title, price, thumbnail, id}) =>{
+    return (    
+        <Link to ={`/details/${id}`} >
+            <div className='card'>
             <div className='food-logo'>
                 <img src={thumbnail}/>
             </div>
@@ -9,7 +11,9 @@ const RestrauCart = ({title, price, thumbnail}) =>{
                 <h4>Rs{price}</h4>
                 <h4>Biryani, north-indian</h4>
             </div>
-        </div>)
+            </div>
+        </Link>   
+        )
 }
 
 export default RestrauCart

@@ -16,8 +16,6 @@ const ShimmerUi = () =>{
                 <div className='card-content'>
                 </div>     
                 </div>
-        
-            
         )
     )} 
     </div>

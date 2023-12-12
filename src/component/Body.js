@@ -6,6 +6,7 @@ import ShimmerUi from './ShimmerUi'
 const Body = () => {
     const [cart, setCart ] = useState([])
     const [filteredData, setFilteredData] = useState([])
+    const [searchText, setSearchText] = useState('')
     
     const updateCart = () => {
         let filteredData = cart.filter((item) => item.rating >= 4.4)
@@ -24,16 +25,19 @@ const Body = () => {
     useEffect(() => {
         fetchData()
     }, [])
+
+    const getSearchedProduct = (value) => {
+        console.log(value)
+        setSearchText(value)
+        let filteredData =cart.filter((item) => item?.title?.toLowerCase()?.includes(value))
+        console.log(filteredData)
+        setFilteredData(filteredData)
+    }
     
-    // useEffect(async() => {
-    //     const data = await fetch('https://dummyjson.com/products/1')
-    //     const json = await data.json()
-    //     console.log(json)
-    // })
     
-   //return <ShimmerUi/>
-    return (filteredData.length === 0 ? <ShimmerUi/> : (<div className='container'>
+    return ((filteredData.length === 0  && searchText.length === 0) ? <ShimmerUi/> : (<div className='container'>
             <h3>Search for the products</h3>
+            <input placeholder='search for the product'  onChange={(e)=> getSearchedProduct(e.target.value)} value={searchText}/>
             <button onClick={() => updateCart()}>Get the highest quantity product</button>
             <button onClick={() => setFilteredData(cart)}>refresh the cart</button>
             <div className='res'>
