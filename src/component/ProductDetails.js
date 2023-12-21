@@ -5,14 +5,20 @@ import { useState } from "react"
 const ProductDetails = () => {
     const {productId} = useParams()
     const [productDescription, setProductDescription] = useState()
+    
     const fetchData = async() => {
-        const data = await fetch(`https://dummyjson.com/products/1${productId}`)
+        const data = await fetch(`https://dummyjson.com/products/${productId}`)
         const result = await data.json()
-        
         setProductDescription(result)
     }
+    
     useEffect(() => {
         fetchData()
+        return(() => {
+            // here the unmounting take place 
+            console.log("unmounting take place")
+            //setCart([])
+        })
     }, [])
     return (
         <div>   
