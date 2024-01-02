@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Body from './src/component/Body'
@@ -8,14 +8,20 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import { Error } from './src/component/Error'
 import ProductDetails from './src/component/ProductDetails'
 import { lazy, Suspense } from 'react'
+import UserContext from './src/component/context'
 
 const About = lazy(() => import('./src/component/About'))
 const Contact = lazy(() => import('./src/component/Contact'))
 
 const App = () => {
-    return <>
+    const [user, setUser] = useState({
+        name: 'diksha',
+        email: 'dikshaupreti2012@gmail.com'
+    })
+
+    return <UserContext.Provider  value={{user, setUser}}>
         <Header /> <Outlet/>
-    </>
+    </UserContext.Provider>
 }
 const appRouter = createBrowserRouter(
     [{

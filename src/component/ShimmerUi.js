@@ -3,7 +3,6 @@ let content = 'fgdfgf'
 let data = ['gdfg', 'gg', 'gg', 'gg', 'gg', 'ggg', 'gg', 'gg']
 
 const ShimmerUi = () =>{
-    
    return (
     <div className='shimmer-container'>
     {data.map(()=>

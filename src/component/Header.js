@@ -1,7 +1,14 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { useContext } from "react"
+import UserContext from "./context"
+import useOnlineSatus from "../hooks/useOnlineStatus"
+
 export const Header = () => {
     const  [btnState, setBtnState]  = useState('Login')
+    const {isonline} = useOnlineSatus()
+    const {user} = useContext(UserContext)
+
     const updateBtnState = () => {
         if(btnState === 'Login') {
             setBtnState('Logout')
@@ -20,6 +27,9 @@ export const Header = () => {
                 <Link to= '/about'><li>About</li></Link>
                 <Link to = '/contact'><li>Cart Item</li></Link>
                 <button onClick={updateBtnState}>{btnState}</button>
+                {isonline ? <>online</> : <>offline</>}
+
+                <h6>Logged in user {user?.name} </h6>
             </ul>
         </div>
     </div>)

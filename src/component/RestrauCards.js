@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom"
-const RestrauCart = ({title, price, thumbnail, id}) =>{
+const RestrauCart = ({title, price, thumbnail, id,setSelectedRestrant, selectedRestrant }) =>{
     return (    
-        <Link to ={`/details/${id}`} >
-            <div className='card'>
+        <div className='card'>
             <div className='food-logo'>
                 <img src={thumbnail}/>
             </div>
@@ -11,9 +9,23 @@ const RestrauCart = ({title, price, thumbnail, id}) =>{
                 <h4>Rs{price}</h4>
                 <h4>Biryani, north-indian</h4>
             </div>
-            </div>
-        </Link>   
-        )
+            <p>selected restrant is {selectedRestrant}</p>
+            <button onClick={() => setSelectedRestrant('dikshs')}>get the selected item</button>
+        </div>
+    )
 }
 
+export const withRestrauCart = (RestrauCards) => {
+    return (props) => {
+        return (
+            <div>
+                <h4>RestrauCards promoted</h4>
+                <RestrauCards {...props} />
+            </div>
+        )
+    }
+}
 export default RestrauCart
+
+
+
